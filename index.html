@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meesam Fragrance | Premium Collection</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* CSS Variables for Dark/Light Mode Theme */
+        :root { 
+            --bg-color: #f4f4f6;
+            --text-main: #222;
+            --text-muted: #666;
+            --card-bg: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.85);
+            --gold-accent: #d4af37;
+            --gold-hover: #b5952f;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-main: #f8f8f8;
+            --text-muted: #aaaaaa;
+            --card-bg: #1e1e1e;
+            --header-bg: rgba(18, 18, 18, 0.85);
+            --shadow: 0 10px 30px rgba(212, 175, 55, 0.05);
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Helvetica Neue', Arial, sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+        
+        header { 
+            background: var(--header-bg); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 1rem 5%; 
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        /* --- LOGO CSS --- */
+        .logo { 
+            text-decoration: none; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        .logo-img { 
+            width: 55px; 
+            height: auto; 
+            margin-bottom: 5px;
+            transition: var(--transition);
+        }
+        [data-theme="dark"] .logo-img {
+            filter: invert(1) brightness(2);
+        }
+        .logo span { 
+            font-size: 0.75rem; 
+            letter-spacing: 4px; 
+            text-transform: uppercase; 
+            color: var(--text-muted); 
+            font-weight: bold;
+        }
+        
+        .theme-toggle {
+            background: none; border: 1px solid var(--gold-accent); color: var(--gold-accent);
+            padding: 8px 15px; border-radius: 20px; cursor: pointer;
+            font-size: 0.9rem; transition: var(--transition);
+            position: absolute;
+            right: 5%;
+        }
+        .theme-toggle:hover { background: var(--gold-accent); color: #121212; }
+
+        .container { max-width: 1250px; margin: 0 auto; padding: 40px 20px; }
+        
+        .hero { text-align: center; padding: 60px 20px; margin-bottom: 50px; }
+        .hero h2 { font-size: 2.8rem; margin-bottom: 15px; font-weight: 300; }
+        .hero h2 strong { font-weight: 700; color: var(--gold-accent); }
+        .hero p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.6;}
+        
+        .product-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 30px; 
+        }
+        
+        .product-card { 
+            background: var(--card-bg); border-radius: 16px; 
+            padding: 45px 25px 25px 25px; 
+            text-align: center; box-shadow: var(--shadow); 
+            transition: var(--transition); 
+            position: relative; overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            opacity: 0; transform: translateY(30px);
+        }
+        
+        .product-card.reveal { opacity: 1; transform: translateY(0); }
+        .product-card:hover { 
+            transform: translateY(-10px) scale(1.02); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            border-color: var(--gold-accent);
+        }
+
+        .product-card img {
+            object-fit: contain;
+        }
+        
+        .badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            backdrop-filter: blur(4px);
+        }
+        
+        .badge.limited { background: rgba(231, 76, 60, 0.95); color: white; border: 1px solid #c0392b; }
+        .badge.bestseller { background: rgba(212, 175, 55, 0.95); color: #121212; border: 1px solid #b5952f; }
+        .badge.instock { background: rgba(46, 204, 113, 0.95); color: #121212; border: 1px solid #27ae60; }
+        .badge.new { background: rgba(52, 152, 219, 0.95); color: white; border: 1px solid #2980b9; }
+
+        /* Inspired By Label Styling */
+        .inspired-by {
+            font-size: 0.75rem;
+            color: var(--gold-accent);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 4px;
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .title { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; color: var(--text-main);}
+        .desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px; min-height: 45px; line-height: 1.5;}
+        
+        .order-btn { 
+            background: transparent; color: var(--gold-accent); 
+            text-decoration: none; padding: 14px 24px; 
+            border-radius: 30px; display: inline-block; 
+            font-weight: 600; width: 100%; transition: var(--transition);
+            border: 2px solid var(--gold-accent);
+            text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;
+        }
+        .order-btn:hover { background: var(--gold-accent); color: #121212; box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4); }
+
+        footer { background-color: #111; color: #fff; text-align: center; padding: 40px 20px; margin-top: 60px; }
+        footer p { color: #888; font-size: 0.9rem; margin-top: 10px;}
+        
+        .whatsapp-float { 
+            position: fixed; bottom: 30px; right: 30px; 
+            background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); 
+            z-index: 1000; transition: var(--transition); text-decoration: none;
+        }
+        .whatsapp-float:hover { transform: scale(1.1) rotate(5deg); background-color: #20b858;}
+        
+        @media (max-width: 768px) {
+            .hero h2 { font-size: 2.2rem; }
+            header { padding: 15px 5%; }
+            .whatsapp-float { bottom: 20px; right: 20px; width: 50px; height: 50px; font-size: 1.5rem;}
+            .badge { font-size: 0.65rem; padding: 5px 10px; }
+            .logo-img { width: 45px; } 
+            .theme-toggle { position: relative; right: auto; margin-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="#" class="logo">
+        <img src="Logo.jpg.jpeg" alt="MF Logo" class="logo-img">
+        <span>Meesam Fragrance</span>
+    </a>
+    <button class="theme-toggle" id="theme-btn"><i class="fas fa-moon"></i> Dark Mode</button>
+</header>
+
+<div class="container">
+    <section class="hero">
+        <h2>Experience <strong>True Luxury</strong></h2>
+        <p>Discover our meticulously crafted collection of premium perfumes and authentic attars. Signature scents that define your presence.</p>
+    </section>
+
+    <section class="product-grid">
+        
+        <div class="product-card">
+            <span class="badge bestseller">⭐ Best Seller</span>
+            <img src="ROOH E GULAB.jpg.png" alt="Rooh E Gulab" style="width: 200px; height: 200px; margin-bottom: 15px;">
+            <div class="inspired-by">Inspired By</div>
+            <div class="title">Rooh E Gulab</div>
+            <div class="desc">The pure, soulful, and traditional essence of premium extracted roses.</div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'ROOH E GULAB'." class="order-btn" target="_blank">Order Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="badge instock">✨ In Stock</span>
+            <img src="FRESH ROSE.jpg.png" alt="Fresh Rose" style="width: 200px; height: 200px; margin-bottom: 15px;">
+            <div class="inspired-by">Inspired By</div>
+            <div class="title">Fresh Rose</div>
+            <div class="desc">A light, refreshing, and delicate floral bouquet for daily elegance.</div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'FRESH ROSE'." class="order-btn" target="_blank">Order Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="badge bestseller">⭐ Best Seller</span>
+            <img src="SAUVAGE.jpg.png" alt="Sauvage" style="width: 200px; height: 200px; margin-bottom: 15px;">
+            <div class="inspired-by">Inspired By</div>
+            <div class="title">Sauvage</div>
+            <div class="desc">A radically fresh composition, raw and noble all at once.</div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'SAUVAGE'." class="order-btn" target="_blank">Order Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="badge limited">🔥 Limited Stock</span>
+            <img src="CREED AVENTUS.jpg.png" alt="Creed Aventus" style="width: 200px; height: 200px; margin-bottom: 15px;">
+            <div class="inspired-by">Inspired By</div>
+            <div class="title">Creed Aventus</div>
+            <div class="desc">Sophisticated, fruity, and rich—the ultimate signature scent of success.</div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'CREED AVENTUS'." class="order-btn" target="_blank">Order Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="badge instock">✨ In Stock</span>
+            <img src="MAXI.jpg.png" alt="Maxi" style="width: 200px; height: 200px; margin-bottom: 15px;">
+            <div class="inspired-by">Inspired By</div>
+            <div class="title">Maxi</div>
+            <div class="desc">A classic, vibrant, and long-lasting aroma that never goes out of style.</div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'MAXI'." class="order-btn" target="_blank">Order Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="badge new">🌟 New Arrival</span>
+            <img src="white Oud.jpg.png" alt="White Oud" style="width: 200px; height: 200px; margin-bottom: 15px;">
+            <div class="inspired-by">Inspired By</div>
+            <div class="title">White Oud</div>
+            <div class="desc">Soft, elegant, and comforting woody notes with a serene finish.</div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'WHITE OUD'." class="order-btn" target="_blank">Order Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="badge instock">✨ In Stock</span>
+            <img src="Oud Al layl2.png" alt="Oud Shams" style="width: 200px; height: 200px; margin-bottom: 15px;">
+            <div class="inspired-by">Inspired By</div>
+            <div class="title">Oud Shams</div>
+            <div class="desc">A warm, radiant, and powerful oriental oud that commands attention.</div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'OUD SHAMS'." class="order-btn" target="_blank">Order Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="badge limited">🔥 Limited Stock</span>
+            <img src="OUD AL SHAMS.jpg.png" alt="Black Oud" style="width: 200px; height: 200px; margin-bottom: 15px;">
+            <div class="inspired-by">Inspired By</div>
+            <div class="title">Black Oud</div>
+            <div class="desc">Deep, dark, and mysterious agarwood blend for the bold.</div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'BLACK OUD'." class="order-btn" target="_blank">Order Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="badge bestseller">⭐ Best Seller</span>
+            <img src="Oud Al layl.jpg.png" alt="Oud Al Lail" style="width: 200px; height: 200px; margin-bottom: 15px;">
+            <div class="inspired-by">Inspired By</div>
+            <div class="title">Oud Al Lail</div>
+            <div class="desc">A premium, long-lasting Oud essence enclosed in an elegant bottle.</div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'OUD AL LAIL'." class="order-btn" target="_blank">Order Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="badge instock">✨ In Stock</span>
+            <img src="AZZARO WANTED.jpg.png" alt="Azzaro Wanted" style="width: 200px; height: 200px; margin-bottom: 15px;">
+            <div class="inspired-by">Inspired By</div>
+            <div class="title">Azzaro Wanted</div>
+            <div class="desc">Bold, masculine, and unapologetically woody with a fresh kick.</div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'AZZARO WANTED'." class="order-btn" target="_blank">Order Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="badge bestseller">⭐ Best Seller</span>
+            <img src="BOMB SHELL.jpg.png" alt="Bomb Shell" style="width: 200px; height: 200px; margin-bottom: 15px;">
+            <div class="inspired-by">Inspired By</div>
+            <div class="title">Bomb Shell</div>
+            <div class="desc">Glamorous, confident, and sparkling with vibrant floral notes.</div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'BOMB SHELL'." class="order-btn" target="_blank">Order Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="badge instock">✨ In Stock</span>
+            <img src="HUGO BOSS.jpg.png" alt="Hugo Boss" style="width: 200px; height: 200px; margin-bottom: 15px;">
+            <div class="inspired-by">Inspired By</div>
+            <div class="title">Hugo Boss</div>
+            <div class="desc">Elegant, modern, and perfectly balanced signature fragrance.</div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'HUGO BOSS'." class="order-btn" target="_blank">Order Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="badge new">🌟 New Arrival</span>
+            <img src="Aqua D Geo.jpg.png" alt="Aqua D Geo" style="width: 200px; height: 200px; margin-bottom: 15px;">
+            <div class="inspired-by">Inspired By</div>
+            <div class="title">Aqua D Geo</div>
+            <div class="desc">Aquatic, refreshing, and deeply aromatic—like an ocean breeze.</div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'AQUA D GEO'." class="order-btn" target="_blank">Order Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="badge instock">✨ In Stock</span>
+            <img src="DAVID.jpg.png" alt="David" style="width: 200px; height: 200px; margin-bottom: 15px;">
+            <div class="inspired-by">Inspired By</div>
+            <div class="title">David</div>
+            <div class="desc">A fresh, dynamic, and spirited daily wear for the modern gentleman.</div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'DAVID'." class="order-btn" target="_blank">Order Now</a>
+        </div>
+
+        <div class="product-card">
+            <span class="badge bestseller">⭐ Best Seller</span>
+            <img src="DENHILL DESIRE.jpg.png" alt="Denhill Desire" style="width: 200px; height: 200px; margin-bottom: 15px;">
+            <div class="inspired-by">Inspired By</div>
+            <div class="title">Denhill Desire</div>
+            <div class="desc">The classic signature fragrance with a refreshing and modern appeal.</div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'DENHILL DESIRE'." class="order-btn" target="_blank">Order Now</a>
+        </div>
+
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2026 Meesam Fragrance. All Rights Reserved.</p>
+</footer>
+
+<a href="https://wa.me/923415359794" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+    // Theme Toggle Logic
+    const themeBtn = document.getElementById('theme-btn');
+    const body = document.body;
+
+    const savedTheme = localStorage.getItem('mf_theme');
+    if (savedTheme === 'dark') {
+        body.setAttribute('data-theme', 'dark');
+        themeBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+    }
+
+    themeBtn.addEventListener('click', () => {
+        if (body.getAttribute('data-theme') === 'dark') {
+            body.removeAttribute('data-theme');
+            localStorage.setItem('mf_theme', 'light');
+            themeBtn.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+        } else {
+            body.setAttribute('data-theme', 'dark');
+            localStorage.setItem('mf_theme', 'dark');
+            themeBtn.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+        }
+    });
+
+    // Scroll Animation Logic 
+    const cards = document.querySelectorAll('.product-card');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('reveal');
+                }, (index % 4) * 150); 
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    cards.forEach(card => {
+        observer.observe(card);
+    });
+</script>
+
+</body>
+</html>
