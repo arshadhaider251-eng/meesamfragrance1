@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meesam Fragrance | Premium Collection</title>
+    <title>Meesam Fragrance | Mahe Ramzan Sale</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         /* CSS Variables for Dark/Light Mode Theme */
@@ -36,6 +36,30 @@
             color: var(--text-main); 
             transition: var(--transition);
             overflow-x: hidden;
+        }
+
+        /* --- RAMZAN BANNER --- */
+        .ramzan-banner {
+            background: linear-gradient(45deg, #111, var(--gold-accent), #111);
+            background-size: 200% 200%;
+            animation: gradientMove 5s ease infinite;
+            color: #fff;
+            text-align: center;
+            padding: 10px 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1001;
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .ramzan-banner i {
+            margin: 0 8px;
+            color: #fff;
         }
         
         header { 
@@ -87,10 +111,10 @@
 
         .container { max-width: 1250px; margin: 0 auto; padding: 40px 20px; }
         
-        .hero { text-align: center; padding: 60px 20px; margin-bottom: 50px; }
+        .hero { text-align: center; padding: 50px 20px; margin-bottom: 40px; }
         .hero h2 { font-size: 2.8rem; margin-bottom: 15px; font-weight: 300; }
         .hero h2 strong { font-weight: 700; color: var(--gold-accent); }
-        .hero p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.6;}
+        .hero p { color: var(--text-muted); font-size: 1.1rem; max-width: 650px; margin: 0 auto; line-height: 1.6;}
         
         .product-grid { 
             display: grid; 
@@ -134,10 +158,8 @@
             backdrop-filter: blur(4px);
         }
         
-        .badge.limited { background: rgba(231, 76, 60, 0.95); color: white; border: 1px solid #c0392b; }
+        .badge.ramzan { background: linear-gradient(45deg, var(--gold-accent), #e6c860); color: #121212; border: 1px solid #b5952f; }
         .badge.bestseller { background: rgba(212, 175, 55, 0.95); color: #121212; border: 1px solid #b5952f; }
-        .badge.instock { background: rgba(46, 204, 113, 0.95); color: #121212; border: 1px solid #27ae60; }
-        .badge.new { background: rgba(52, 152, 219, 0.95); color: white; border: 1px solid #2980b9; }
 
         /* Inspired By Label Styling */
         .inspired-by {
@@ -151,7 +173,24 @@
         }
 
         .title { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; color: var(--text-main);}
-        .desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px; min-height: 45px; line-height: 1.5;}
+        .desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; min-height: 45px; line-height: 1.5;}
+
+        /* --- PRICE STYLING --- */
+        .price-box {
+            margin-bottom: 25px;
+        }
+        .old-price {
+            text-decoration: line-through;
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-right: 8px;
+            font-weight: 500;
+        }
+        .new-price {
+            color: var(--gold-accent);
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
         
         .order-btn { 
             background: transparent; color: var(--gold-accent); 
@@ -187,6 +226,10 @@
 </head>
 <body>
 
+<div class="ramzan-banner">
+    <i class="fas fa-moon"></i> Mahe Ramzan Special: Up To 20% Off on Premium Fragrances! <i class="fas fa-star"></i>
+</div>
+
 <header>
     <a href="#" class="logo">
         <img src="Logo.jpg.jpeg" alt="MF Logo" class="logo-img">
@@ -197,28 +240,36 @@
 
 <div class="container">
     <section class="hero">
-        <h2>Experience <strong>True Luxury</strong></h2>
-        <p>Discover our meticulously crafted collection of premium perfumes and authentic attars. Signature scents that define your presence.</p>
+        <h2>Blessings of <strong>Mahe Ramzan</strong></h2>
+        <p>Celebrate the holy month with the pure essence of Meesam Fragrance. Discover our meticulously crafted collection of premium perfumes and authentic attars at special discounted prices.</p>
     </section>
 
     <section class="product-grid">
         
         <div class="product-card">
-            <span class="badge bestseller">⭐ Best Seller</span>
+            <span class="badge ramzan">🌙 Ramzan Sale</span>
             <img src="ROOH%20E%20GULAB.jpg.png" alt="Rooh E Gulab" style="width: 200px; height: 200px; margin-bottom: 15px;">
             <div class="inspired-by">Inspired By</div>
             <div class="title">Rooh E Gulab</div>
             <div class="desc">The pure, soulful, and traditional essence of premium extracted roses.</div>
-            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'ROOH E GULAB'." class="order-btn" target="_blank">Order Now</a>
+            <div class="price-box">
+                <span class="old-price">Rs. 1500</span>
+                <span class="new-price">Rs. 1200</span>
+            </div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'ROOH E GULAB' with the Ramzan Discount." class="order-btn" target="_blank">Order Now</a>
         </div>
 
         <div class="product-card">
-            <span class="badge instock">✨ In Stock</span>
+            <span class="badge ramzan">🌙 Ramzan Sale</span>
             <img src="FRESH%20ROSE.jpg.png" alt="Fresh Rose" style="width: 200px; height: 200px; margin-bottom: 15px;">
             <div class="inspired-by">Inspired By</div>
             <div class="title">Fresh Rose</div>
             <div class="desc">A light, refreshing, and delicate floral bouquet for daily elegance.</div>
-            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'FRESH ROSE'." class="order-btn" target="_blank">Order Now</a>
+            <div class="price-box">
+                <span class="old-price">Rs. 1900</span>
+                <span class="new-price">Rs. 1500</span>
+            </div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'FRESH ROSE' with the Ramzan Discount." class="order-btn" target="_blank">Order Now</a>
         </div>
 
         <div class="product-card">
@@ -227,52 +278,77 @@
             <div class="inspired-by">Inspired By</div>
             <div class="title">Sauvage</div>
             <div class="desc">A radically fresh composition, raw and noble all at once.</div>
-            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'SAUVAGE'." class="order-btn" target="_blank">Order Now</a>
+            <div class="price-box">
+                <span class="old-price">Rs. 2600</span>
+                <span class="new-price">Rs. 2100</span>
+            </div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'SAUVAGE' with the Ramzan Discount." class="order-btn" target="_blank">Order Now</a>
         </div>
 
         <div class="product-card">
-            <span class="badge limited">🔥 Limited Stock</span>
+            <span class="badge ramzan">🌙 Ramzan Sale</span>
             <img src="CREED%20AVENTUS.jpg.png" alt="Creed Aventus" style="width: 200px; height: 200px; margin-bottom: 15px;">
             <div class="inspired-by">Inspired By</div>
             <div class="title">Creed Aventus</div>
             <div class="desc">Sophisticated, fruity, and rich—the ultimate signature scent of success.</div>
-            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'CREED AVENTUS'." class="order-btn" target="_blank">Order Now</a>
+            <div class="price-box">
+                <span class="old-price">Rs. 2600</span>
+                <span class="new-price">Rs. 2100</span>
+            </div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'CREED AVENTUS' with the Ramzan Discount." class="order-btn" target="_blank">Order Now</a>
         </div>
 
         <div class="product-card">
-            <span class="badge instock">✨ In Stock</span>
+            <span class="badge ramzan">🌙 Ramzan Sale</span>
+            <!-- filename corrected: actual file is MAXI.jpg.png -->
             <img src="MAXI.jpg.png" alt="Maxi" style="width: 200px; height: 200px; margin-bottom: 15px;">
             <div class="inspired-by">Inspired By</div>
             <div class="title">Maxi</div>
             <div class="desc">A classic, vibrant, and long-lasting aroma that never goes out of style.</div>
-            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'MAXI'." class="order-btn" target="_blank">Order Now</a>
+            <div class="price-box">
+                <span class="old-price">Rs. 2600</span>
+                <span class="new-price">Rs. 2100</span>
+            </div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'MAXI' with the Ramzan Discount." class="order-btn" target="_blank">Order Now</a>
         </div>
 
         <div class="product-card">
-            <span class="badge new">🌟 New Arrival</span>
+            <span class="badge ramzan">🌙 Ramzan Sale</span>
             <img src="white%20Oud.jpg.png" alt="White Oud" style="width: 200px; height: 200px; margin-bottom: 15px;">
             <div class="inspired-by">Inspired By</div>
             <div class="title">White Oud</div>
             <div class="desc">Soft, elegant, and comforting woody notes with a serene finish.</div>
-            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'WHITE OUD'." class="order-btn" target="_blank">Order Now</a>
+            <div class="price-box">
+                <span class="old-price">Rs. 1800</span>
+                <span class="new-price">Rs. 1400</span>
+            </div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'WHITE OUD' with the Ramzan Discount." class="order-btn" target="_blank">Order Now</a>
         </div>
 
         <div class="product-card">
-            <span class="badge instock">✨ In Stock</span>
+            <span class="badge ramzan">🌙 Ramzan Sale</span>
             <img src="Oud%20Al%20layl2.png" alt="Oud Shams" style="width: 200px; height: 200px; margin-bottom: 15px;">
             <div class="inspired-by">Inspired By</div>
             <div class="title">Oud Shams</div>
             <div class="desc">A warm, radiant, and powerful oriental oud that commands attention.</div>
-            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'OUD SHAMS'." class="order-btn" target="_blank">Order Now</a>
+            <div class="price-box">
+                <span class="old-price">Rs. 2900</span>
+                <span class="new-price">Rs. 2300</span>
+            </div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'OUD SHAMS' with the Ramzan Discount." class="order-btn" target="_blank">Order Now</a>
         </div>
 
         <div class="product-card">
-            <span class="badge limited">🔥 Limited Stock</span>
+            <span class="badge ramzan">🌙 Ramzan Sale</span>
             <img src="OUD%20AL%20SHAMS.jpg.png" alt="Black Oud" style="width: 200px; height: 200px; margin-bottom: 15px;">
             <div class="inspired-by">Inspired By</div>
             <div class="title">Black Oud</div>
             <div class="desc">Deep, dark, and mysterious agarwood blend for the bold.</div>
-            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'BLACK OUD'." class="order-btn" target="_blank">Order Now</a>
+            <div class="price-box">
+                <span class="old-price">Rs. 2900</span>
+                <span class="new-price">Rs. 2300</span>
+            </div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'BLACK OUD' with the Ramzan Discount." class="order-btn" target="_blank">Order Now</a>
         </div>
 
         <div class="product-card">
@@ -281,16 +357,24 @@
             <div class="inspired-by">Inspired By</div>
             <div class="title">Oud Al Lail</div>
             <div class="desc">A premium, long-lasting Oud essence enclosed in an elegant bottle.</div>
-            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'OUD AL LAIL'." class="order-btn" target="_blank">Order Now</a>
+            <div class="price-box">
+                <span class="old-price">Rs. 2800</span>
+                <span class="new-price">Rs. 2200</span>
+            </div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'OUD AL LAIL' with the Ramzan Discount." class="order-btn" target="_blank">Order Now</a>
         </div>
 
         <div class="product-card">
-            <span class="badge instock">✨ In Stock</span>
+            <span class="badge ramzan">🌙 Ramzan Sale</span>
             <img src="AZZARO%20WANTED.jpg.png" alt="Azzaro Wanted" style="width: 200px; height: 200px; margin-bottom: 15px;">
             <div class="inspired-by">Inspired By</div>
             <div class="title">Azzaro Wanted</div>
             <div class="desc">Bold, masculine, and unapologetically woody with a fresh kick.</div>
-            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'AZZARO WANTED'." class="order-btn" target="_blank">Order Now</a>
+            <div class="price-box">
+                <span class="old-price">Rs. 2600</span>
+                <span class="new-price">Rs. 2100</span>
+            </div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'AZZARO WANTED' with the Ramzan Discount." class="order-btn" target="_blank">Order Now</a>
         </div>
 
         <div class="product-card">
@@ -299,34 +383,50 @@
             <div class="inspired-by">Inspired By</div>
             <div class="title">Bomb Shell</div>
             <div class="desc">Glamorous, confident, and sparkling with vibrant floral notes.</div>
-            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'BOMB SHELL'." class="order-btn" target="_blank">Order Now</a>
+            <div class="price-box">
+                <span class="old-price">Rs. 2600</span>
+                <span class="new-price">Rs. 2100</span>
+            </div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'BOMB SHELL' with the Ramzan Discount." class="order-btn" target="_blank">Order Now</a>
         </div>
 
         <div class="product-card">
-            <span class="badge instock">✨ In Stock</span>
+            <span class="badge ramzan">🌙 Ramzan Sale</span>
             <img src="HUGO%20BOSS.jpg.png" alt="Hugo Boss" style="width: 200px; height: 200px; margin-bottom: 15px;">
             <div class="inspired-by">Inspired By</div>
             <div class="title">Hugo Boss</div>
             <div class="desc">Elegant, modern, and perfectly balanced signature fragrance.</div>
-            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'HUGO BOSS'." class="order-btn" target="_blank">Order Now</a>
+            <div class="price-box">
+                <span class="old-price">Rs. 2600</span>
+                <span class="new-price">Rs. 2100</span>
+            </div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'HUGO BOSS' with the Ramzan Discount." class="order-btn" target="_blank">Order Now</a>
         </div>
 
         <div class="product-card">
-            <span class="badge new">🌟 New Arrival</span>
+            <span class="badge ramzan">🌙 Ramzan Sale</span>
             <img src="Aqua%20D%20Geo.jpg.png" alt="Aqua D Geo" style="width: 200px; height: 200px; margin-bottom: 15px;">
             <div class="inspired-by">Inspired By</div>
             <div class="title">Aqua D Geo</div>
             <div class="desc">Aquatic, refreshing, and deeply aromatic—like an ocean breeze.</div>
-            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'AQUA D GEO'." class="order-btn" target="_blank">Order Now</a>
+            <div class="price-box">
+                <span class="old-price">Rs. 2600</span>
+                <span class="new-price">Rs. 2100</span>
+            </div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'AQUA D GEO' with the Ramzan Discount." class="order-btn" target="_blank">Order Now</a>
         </div>
 
         <div class="product-card">
-            <span class="badge instock">✨ In Stock</span>
+            <span class="badge ramzan">🌙 Ramzan Sale</span>
             <img src="DAVID.jpg.png" alt="David" style="width: 200px; height: 200px; margin-bottom: 15px;">
             <div class="inspired-by">Inspired By</div>
             <div class="title">David</div>
             <div class="desc">A fresh, dynamic, and spirited daily wear for the modern gentleman.</div>
-            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'DAVID'." class="order-btn" target="_blank">Order Now</a>
+            <div class="price-box">
+                <span class="old-price">Rs. 2600</span>
+                <span class="new-price">Rs. 2100</span>
+            </div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'DAVID' with the Ramzan Discount." class="order-btn" target="_blank">Order Now</a>
         </div>
 
         <div class="product-card">
@@ -335,14 +435,18 @@
             <div class="inspired-by">Inspired By</div>
             <div class="title">Denhill Desire</div>
             <div class="desc">The classic signature fragrance with a refreshing and modern appeal.</div>
-            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'DENHILL DESIRE'." class="order-btn" target="_blank">Order Now</a>
+            <div class="price-box">
+                <span class="old-price">Rs. 2600</span>
+                <span class="new-price">Rs. 2100</span>
+            </div>
+            <a href="https://wa.me/923415359794?text=Hi, I would like to order 'DENHILL DESIRE' with the Ramzan Discount." class="order-btn" target="_blank">Order Now</a>
         </div>
 
     </section>
 </div>
 
 <footer>
-    <p>&copy; 2026 Meesam Fragrance. All Rights Reserved.</p>
+    <p>&copy; 2026 Meesam Fragrance. All Rights Reserved. Ramzan Mubarak!</p>
 </footer>
 
 <a href="https://wa.me/923415359794" class="whatsapp-float" target="_blank">
